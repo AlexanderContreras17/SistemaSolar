@@ -1,0 +1,58 @@
+﻿<Window x:Class="SistemaSolar.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SistemaSolar"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <DockPanel>
+        <StackPanel Width="100" DockPanel.Dock="Left">
+            <Button x:Name="prim">Primavera</Button>
+            <Button x:Name="verano">Verano</Button>
+            <Button>Otoño</Button>
+            <Button>Invierno</Button>
+        </StackPanel>
+        <Canvas>
+        <Ellipse Width="80" Height="80" Fill="Yellow" Canvas.Left="360" Canvas.Top="185"/>
+        <Path Stroke="Black" Width="400" Height="300">
+            <Path.Data>
+                <PathGeometry>
+                    <PathGeometry.Figures>
+                        <PathFigure StartPoint="200,300">
+                            <ArcSegment Size="200,150" Point="200,0" SweepDirection="Clockwise"/>
+                            <ArcSegment Size="200,150" Point="200,300" SweepDirection="Clockwise"/>
+                        </PathFigure>
+                    </PathGeometry.Figures>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+        <Path Fill="Blue" Canvas.Left="200" Canvas.Top="75">
+            <Path.Data>
+                <EllipseGeometry x:Name="tierra" Center="0,0" RadiusX="20" RadiusY="20"></EllipseGeometry>
+            </Path.Data>
+        </Path>
+        <Canvas.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <PointAnimationUsingPath Duration="0:0:5" RepeatBehavior="1x" Storyboard.TargetName="tierra" Storyboard.TargetProperty="Center">
+                                <PointAnimationUsingPath.PathGeometry>
+                                    <PathGeometry>
+                                        <PathGeometry.Figures>
+                                            <PathFigure StartPoint="200,300">
+                                                <ArcSegment Size="200,150" Point="200,0" SweepDirection="Clockwise"/>
+                                                <ArcSegment Size="200,150" Point="200,300" SweepDirection="Clockwise"/>
+                                            </PathFigure>
+                                        </PathGeometry.Figures>
+                                    </PathGeometry>
+                                </PointAnimationUsingPath.PathGeometry>
+                            </PointAnimationUsingPath>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Canvas.Triggers>
+            
+    </Canvas>
+    </DockPanel>
+</Window>
